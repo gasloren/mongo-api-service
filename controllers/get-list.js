@@ -10,17 +10,15 @@ const getList = async (mongoClient, databaseName, requestBody) => {
     const collection = database.collection(collectionName);
 
     const data = await collection.find(selectorObj, modifierObj).toArray();
-    
+
     return {
-      fail: false,
       data
     };
 
   } catch (error) {
 
     return {
-      fail: true,
-      data: error
+      error
     };
     
   } finally {

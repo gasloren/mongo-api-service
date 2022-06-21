@@ -12,15 +12,13 @@ const removeAll = async (mongoClient, databaseName, requestBody) => {
     const data = await collection.deleteMany(selectorObj);
     
     return {
-      fail: false,
       data
     };
 
   } catch (error) {
 
     return {
-      fail: true,
-      data: error
+      error
     };
     
   } finally {

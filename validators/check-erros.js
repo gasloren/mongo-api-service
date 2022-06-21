@@ -8,8 +8,7 @@ const checkErrors = (req, res, next) => {
 
   if (!errors.isEmpty()) {
     return res.status(400).json({
-      fail: true,
-      data: errors.array()[0]
+      error: errors.array()[0]
     });
   }
 

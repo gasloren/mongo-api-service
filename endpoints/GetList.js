@@ -30,7 +30,7 @@ class GetList {
       ],
       async (req, res) => {
         const result = await getList(this.mongo, this.dbName, req.body);
-        res.status(!result.fail ? 200 : 404).json(result);
+        res.status(!result.error ? 200 : 404).json(result);
       }
     );
   }

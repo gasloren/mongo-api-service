@@ -12,15 +12,13 @@ const insertOne = async (mongoClient, databaseName, requestBody) => {
     const data = await collection.insertOne({ ...insertData });
     
     return {
-      fail: false,
       data
     };
 
   } catch (error) {
 
     return {
-      fail: true,
-      data: error
+      error
     };
     
   } finally {

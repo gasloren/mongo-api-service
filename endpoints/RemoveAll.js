@@ -27,8 +27,8 @@ class RemoveAll {
         checkErrors
       ],
       async (req, res) => {
-        const result = await removeAll(this.mongo, this.dbName, req.body);
-        res.status(!result.fail ? 200 : 404).json(result);
+        const result = await getList(this.mongo, this.dbName, req.body);
+        res.status(!result.error ? 200 : 404).json(result);
       }
     );
   }
