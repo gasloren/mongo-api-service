@@ -2,7 +2,7 @@ const validApiKeyToken = require('../validators/valid-api-key-token');
 const validCollectionName = require('../validators/valid-collection-name');
 const validSelectorObj = require('../validators/valid-selector-obj');
 const validUpdateData = require('../validators/valid-update-data');
-const checkErrors = require('../validators/check-erros');
+const checkErrors = require('../validators/check-errors');
 
 const updateAll = require('../controllers/update-all');
 
@@ -29,7 +29,7 @@ class UpdateAll {
         checkErrors
       ],
       async (req, res) => {
-        const result = await getList(this.mongo, this.dbName, req.body);
+        const result = await updateAll(this.mongo, this.dbName, req.body);
         res.status(!result.error ? 200 : 404).json(result);
       }
     );

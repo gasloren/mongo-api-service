@@ -1,7 +1,7 @@
 const validApiKeyToken = require('../validators/valid-api-key-token');
 const validCollectionName = require('../validators/valid-collection-name');
 const validSelectorObj = require('../validators/valid-selector-obj');
-const checkErrors = require('../validators/check-erros');
+const checkErrors = require('../validators/check-errors');
 
 const removeAll = require('../controllers/remove-all');
 
@@ -27,7 +27,7 @@ class RemoveAll {
         checkErrors
       ],
       async (req, res) => {
-        const result = await getList(this.mongo, this.dbName, req.body);
+        const result = await removeAll(this.mongo, this.dbName, req.body);
         res.status(!result.error ? 200 : 404).json(result);
       }
     );

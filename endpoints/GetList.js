@@ -2,7 +2,7 @@ const validApiKeyToken = require('../validators/valid-api-key-token');
 const validCollectionName = require('../validators/valid-collection-name');
 const validSelectorObj = require('../validators/valid-selector-obj');
 const validModifierObj = require('../validators/valid-modifier-obj');
-const checkErrors = require('../validators/check-erros');
+const checkErrors = require('../validators/check-errors');
 
 const getList = require('../controllers/get-list');
 
