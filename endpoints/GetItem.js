@@ -1,3 +1,4 @@
+const validApiKeyToken = require('../validators/valid-api-key-token');
 const validCollectionName = require('../validators/valid-collection-name');
 const validSelectorObj = require('../validators/valid-selector-obj');
 const checkErrors = require('../validators/check-erros');
@@ -20,6 +21,7 @@ class GetItem {
     this.server.post(
       this.path,
       [
+        ...validApiKeyToken,
         ...validCollectionName,
         ...validSelectorObj,
         checkErrors

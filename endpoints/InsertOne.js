@@ -1,3 +1,4 @@
+const validApiKeyToken = require('../validators/valid-api-key-token');
 const validCollectionName = require('../validators/valid-collection-name');
 const validInsertData = require('../validators/valid-insert-data');
 const checkErrors = require('../validators/check-erros');
@@ -20,6 +21,7 @@ class InsertOne {
     this.server.post(
       this.path,
       [
+        ...validApiKeyToken,
         ...validCollectionName,
         ...validInsertData,
         checkErrors
