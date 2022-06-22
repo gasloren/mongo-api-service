@@ -14,9 +14,7 @@ class Server {
     this.database = process.env.DATABASE;
     this.server = express();
     this.mongo = new MongoClient(this.mongoUri);
-
     this.middlewares();
-
     this.routes = new Routes(this.server, this.mongo);
   }
 
@@ -27,6 +25,18 @@ class Server {
   listen() {
     this.server.listen(this.port, () => {
       console.log(`Mongo API listening on port ${this.port}`);
+    });
+  }
+
+  onExit() {
+    // listen for the signal interruption (ctrl-c) or error
+    // configure "kill_timeout : 3000" on ecosystem.config.js
+    // and "listen_timeout: 10000"
+    process.on('SIGINT', () => {
+      db.stop((err) => {
+        console.log('exit server');
+        process.exit(err ? 1 : 0);
+      })
     });
   }
 
