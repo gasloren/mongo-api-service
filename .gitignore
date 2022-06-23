@@ -1,6 +1,6 @@
 node_modules/
 ecosystem.config.js
-connect
-deploy
-build/
+connect.sh
+deploy.sh
+_deploy/
 .DS_Store
