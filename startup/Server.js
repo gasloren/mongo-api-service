@@ -32,11 +32,10 @@ class Server {
     // listen for the signal interruption (ctrl-c) or error
     // configure "kill_timeout : 3000" on ecosystem.config.js
     // and "listen_timeout: 10000"
-    process.on('SIGINT', () => {
-      db.stop((err) => {
-        console.log('exit server');
-        process.exit(err ? 1 : 0);
-      })
+    process.on('SIGINT', (err) => {
+      this.mongo.close();
+      console.log('exit server');
+      process.exit(err ? 1 : 0);
     });
   }
 
