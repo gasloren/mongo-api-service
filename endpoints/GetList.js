@@ -11,7 +11,7 @@ const getList = require('../controllers/get-list');
 class GetList {
 
   constructor(server, mongo) {
-    this.path = '/get-list';
+    this.path = '/mongo/get-list';
     this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;

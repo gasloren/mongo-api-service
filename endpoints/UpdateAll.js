@@ -11,7 +11,7 @@ const updateAll = require('../controllers/update-all');
 class UpdateAll {
 
   constructor(server, mongo) {
-    this.path = '/update-all';
+    this.path = '/mongo/update-all';
     this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;

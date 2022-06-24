@@ -10,7 +10,7 @@ const getItem = require('../controllers/get-item');
 class GetItem {
 
   constructor(server, mongo) {
-    this.path = '/get-item';
+    this.path = '/mongo/get-item';
     this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;
