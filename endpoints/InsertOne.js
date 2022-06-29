@@ -10,7 +10,7 @@ const insertOne = require('../controllers/insert-one');
 class InsertOne {
 
   constructor(server, mongo) {
-    this.path = '/mongo/insert-one';
+    this.path = '/mongo/insert/one';
     this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;

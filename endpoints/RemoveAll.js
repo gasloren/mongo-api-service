@@ -10,7 +10,7 @@ const removeAll = require('../controllers/remove-all');
 class RemoveAll {
 
   constructor(server, mongo) {
-    this.path = '/mongo/remove-all';
+    this.path = '/mongo/remove/all';
     this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;
