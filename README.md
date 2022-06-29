@@ -2,10 +2,10 @@
 
 ### Endpoints
 
-` /mongo/get/list `
-` /mongo/get/item `
-` /mongo/insert/one `
-` /mongo/update/all `
+` /mongo/get/list `\
+` /mongo/get/item `\
+` /mongo/insert/one `\
+` /mongo/update/all `\
 ` /mongo/remove/all `
 
 
