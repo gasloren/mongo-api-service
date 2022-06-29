@@ -1,4 +1,4 @@
-# Mongo DB API As A Service
+# Mongo DB Micro Service API
 
 ### Endpoints
 
