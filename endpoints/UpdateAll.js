@@ -1,4 +1,4 @@
-const validAuthApiKeyToken = require('../validators/valid-auth-api-key-token');
+const validApiKey = require('../validators/valid-api-key');
 const validCollectionName = require('../validators/valid-collection-name');
 const validSelectorObj = require('../validators/valid-selector-obj');
 const validUpdateData = require('../validators/valid-update-data');
@@ -22,7 +22,7 @@ class UpdateAll {
     this.server.post(
       this.path,
       [
-        ...validAuthApiKeyToken,
+        ...validApiKey,
         ...validCollectionName,
         ...validSelectorObj,
         ...validUpdateData,

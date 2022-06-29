@@ -1,9 +1,17 @@
 # Mongo DB API As A Service
 
+### Endpoints
 
-- Expose api endpoints for CRUD operations on MongoDB on a local hosted database.
+` /mongo/get/list `
+` /mongo/get/item `
+` /mongo/insert/one `
+` /mongo/update/all `
+` /mongo/remove/all `
 
-- Auth secret API key token will be reqired on incomming requests.
 
-- Only direct local requests will be accepted.
+- API endpoints for CRUD operations on MongoDB on a local hosted database.
+
+- Only accept localhost requests.
+
+- Header api key is require.
 
