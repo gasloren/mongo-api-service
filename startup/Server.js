@@ -11,18 +11,18 @@ class Server {
     this.port = process.env.PORT;
     this.mongoUri = process.env.MONGO_URI;
     this.database = process.env.DATABASE;
-    this.server = express();
+    this.app = express();
     this.mongo = new Mongo();
     this.middlewares();
-    this.routes = new Routes(this.server, this.mongo);
+    this.routes = new Routes(this.app, this.mongo);
   }
 
   middlewares() {
-    this.server.use(express.json());
+    this.app.use(express.json());
   }
 
   listen() {
-    this.server.listen(this.port, () => {
+    this.app.listen(this.port, () => {
       console.log(`Mongo API listening on port ${this.port}`);
     });
   }

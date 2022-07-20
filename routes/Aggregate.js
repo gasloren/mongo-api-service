@@ -8,7 +8,7 @@ const checkErrors = require('../validators/check-errors');
 class Aggregate {
 
   constructor(server, mongo) {
-    this.path = '/mongo/get/list';
+    this.path = '/mongo/aggregate';
     this.server = server;
     this.mongo = mongo;
     this.route();

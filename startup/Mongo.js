@@ -66,7 +66,7 @@ class Mongo {
   // AGGREGATE PIPELINE
   async aggregate({ collection, pipeline }) {
     return await this._handle(collection, (cursor) => {
-      return cursor.aggregate(pipeline);
+      return cursor.aggregate(pipeline).toArray();
     });
   }
 
