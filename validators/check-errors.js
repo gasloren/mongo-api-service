@@ -1,5 +1,8 @@
 const { validationResult } = require('express-validator');
 
+const { NODE_ENV } = process.env;
+const isDev = NODE_ENV !== 'production';
+
 // ----------------------------------------------
 
 const checkErrors = (req, res, next) => {
@@ -8,7 +11,7 @@ const checkErrors = (req, res, next) => {
 
   if (!errors.isEmpty()) {
     return res.status(400).json({
-      error: errors.array()[0]
+      error: isDev ? errors.array()[0] : 'Request errors!'
     });
   }
 

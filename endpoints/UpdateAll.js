@@ -1,10 +1,8 @@
 const validApiKey = require('../validators/valid-api-key');
-const validCollectionName = require('../validators/valid-collection-name');
-const validSelectorObj = require('../validators/valid-selector-obj');
-const validUpdateData = require('../validators/valid-update-data');
+const validCollection = require('../validators/valid-collection');
+const validFilters = require('../validators/valid-filters');
+const validDocument = require('../validators/valid-document');
 const checkErrors = require('../validators/check-errors');
-
-const updateAll = require('../controllers/update-all');
 
 // --------------------------------------------
 
@@ -12,7 +10,6 @@ class UpdateAll {
 
   constructor(server, mongo) {
     this.path = '/mongo/update/all';
-    this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;
     this.route();
@@ -23,13 +20,13 @@ class UpdateAll {
       this.path,
       [
         ...validApiKey,
-        ...validCollectionName,
-        ...validSelectorObj,
-        ...validUpdateData,
+        ...validCollection,
+        ...validFilters,
+        ...validDocument,
         checkErrors
       ],
       async (req, res) => {
-        const result = await updateAll(this.mongo, this.dbName, req.body);
+        const result = await this.mongo.updateAll(req.body);
         res.status(!result.error ? 200 : 404).json(result);
       }
     );

@@ -1,12 +1,11 @@
 const validApiKey = require('../validators/valid-api-key');
 const validCollection = require('../validators/valid-collection');
-const validFilters = require('../validators/valid-filters');
-const validOptions = require('../validators/valid-options');
+const validPipeline = require('../validators/valid-pipeline');
 const checkErrors = require('../validators/check-errors');
 
 // --------------------------------------------
 
-class GetList {
+class Aggregate {
 
   constructor(server, mongo) {
     this.path = '/mongo/get/list';
@@ -21,12 +20,11 @@ class GetList {
       [
         ...validApiKey,
         ...validCollection,
-        ...validFilters,
-        ...validOptions,
+        ...validPipeline,
         checkErrors
       ],
       async (req, res) => {
-        const result = await this.mongo.getList(req.body);
+        const result = await this.mongo.aggregate(req.body);
         res.status(!result.error ? 200 : 404).json(result);
       }
     );
@@ -34,4 +32,4 @@ class GetList {
 
 };
 
-module.exports = GetList;
+module.exports = Aggregate;

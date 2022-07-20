@@ -5,10 +5,10 @@ const apiKey = process.env.API_KEY;
 // -----------------------------------------
 
 const validApiKey = [
-  header('Api-Key').exists(),
-  header('Api-Key').isString(),
-  header('Api-Key').notEmpty(),
-  header('Api-Key').equals(apiKey)
+  header('Api-Key', 'Api-Key must exists').exists(),
+  header('Api-Key', 'Api-Key must be a string').isString(),
+  header('Api-Key', 'Api-Key can not be empty').notEmpty(),
+  header('Api-Key', 'Api-Key does not match').equals(apiKey)
 ];
 
 module.exports = validApiKey;

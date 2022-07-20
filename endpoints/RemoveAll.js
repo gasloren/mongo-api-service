@@ -1,9 +1,7 @@
 const validApiKey = require('../validators/valid-api-key');
-const validCollectionName = require('../validators/valid-collection-name');
-const validSelectorObj = require('../validators/valid-selector-obj');
+const validCollection = require('../validators/valid-collection');
+const validFilters = require('../validators/valid-filters');
 const checkErrors = require('../validators/check-errors');
-
-const removeAll = require('../controllers/remove-all');
 
 // --------------------------------------------
 
@@ -11,7 +9,6 @@ class RemoveAll {
 
   constructor(server, mongo) {
     this.path = '/mongo/remove/all';
-    this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;
     this.route();
@@ -22,12 +19,12 @@ class RemoveAll {
       this.path,
       [
         ...validApiKey,
-        ...validCollectionName,
-        ...validSelectorObj,
+        ...validCollection,
+        ...validFilters,
         checkErrors
       ],
       async (req, res) => {
-        const result = await removeAll(this.mongo, this.dbName, req.body);
+        const result = await this.mongo.removeAll(req.body);
         res.status(!result.error ? 200 : 404).json(result);
       }
     );

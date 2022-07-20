@@ -1,9 +1,7 @@
 const validApiKey = require('../validators/valid-api-key');
-const validCollectionName = require('../validators/valid-collection-name');
-const validSelectorObj = require('../validators/valid-selector-obj');
+const validCollection = require('../validators/valid-collection');
+const validFilters = require('../validators/valid-filters');
 const checkErrors = require('../validators/check-errors');
-
-const getItem = require('../controllers/get-item');
 
 // --------------------------------------------
 
@@ -11,7 +9,6 @@ class GetItem {
 
   constructor(server, mongo) {
     this.path = '/mongo/get/item';
-    this.dbName = process.env.DATABASE;
     this.server = server;
     this.mongo = mongo;
     this.route();
@@ -22,12 +19,12 @@ class GetItem {
       this.path,
       [
         ...validApiKey,
-        ...validCollectionName,
-        ...validSelectorObj,
+        ...validCollection,
+        ...validFilters,
         checkErrors
       ],
       async (req, res) => {
-        const result = await getItem(this.mongo, this.dbName, req.body);
+        const result = await this.mongo.getItem(req.body);
         res.status(!result.error ? 200 : 404).json(result);
       }
     );

@@ -1,7 +1,6 @@
 const express = require('express');
 
-const { MongoClient } = require("mongodb");
-
+const Mongo = require('./Mongo');
 const Routes = require('./Routes');
 
 // -------------------------------------------
@@ -13,7 +12,7 @@ class Server {
     this.mongoUri = process.env.MONGO_URI;
     this.database = process.env.DATABASE;
     this.server = express();
-    this.mongo = new MongoClient(this.mongoUri);
+    this.mongo = new Mongo();
     this.middlewares();
     this.routes = new Routes(this.server, this.mongo);
   }
