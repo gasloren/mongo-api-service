@@ -13,11 +13,11 @@ class Server {
     this.database = process.env.DATABASE;
     this.app = express();
     this.mongo = new Mongo();
-    this.middlewares();
+    this.appMiddlewares();
     this.routes = new Routes(this.app, this.mongo);
   }
 
-  middlewares() {
+  appMiddlewares() {
     this.app.use(express.json());
   }
 

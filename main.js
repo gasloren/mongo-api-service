@@ -1,4 +1,4 @@
-const Server = require('./startup/Server');
+const Server = require('./server/Server');
 
 // ----------------------------
 

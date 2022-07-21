@@ -29,9 +29,9 @@ class Mongo {
   }
 
   // GET ITEM
-  async getItem({ collection, filters }) {
+  async getItem({ collection, filters, options }) {
     return await this._handle(collection, (cursor) => {
-      return cursor.findOne(filters);
+      return cursor.findOne(filters, options);
     });
   }
 
