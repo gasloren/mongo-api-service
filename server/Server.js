@@ -15,6 +15,7 @@ class Server {
     this.mongo = new Mongo();
     this.appMiddlewares();
     this.routes = new Routes(this.app, this.mongo);
+    this.listener = null;
   }
 
   appMiddlewares() {
@@ -22,10 +23,18 @@ class Server {
   }
 
   listen() {
-    this.app.listen(this.port, () => {
+    this.listener = this.app.listen(this.port, () => {
       console.log(`Mongo API listening on port ${this.port}`);
     });
   }
+
+  // for test
+  closeListener() {            
+    this.listener.close();
+  }
+
+  // for test
+  getApp() { return this.app; }
 
   onExit() {
     // listen for the signal interruption (ctrl-c) or error

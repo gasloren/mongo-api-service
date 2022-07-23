@@ -1,4 +1,4 @@
-const { MongoClient } = require("mongodb");
+const { MongoClient, ObjectId } = require("mongodb");
 
 // -------------------------------------------
 
@@ -16,6 +16,9 @@ class Mongo {
       const db = this.mongo.db(this.database);
       const cursor = db.collection(collection);
       const data = await execute(cursor);
+      if (data._id && typeof(data._id) === 'object') {
+        data._id = data._id.toString();
+      }
       return {
         data
       };

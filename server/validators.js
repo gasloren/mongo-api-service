@@ -1,4 +1,5 @@
 const { header, body, validationResult } = require('express-validator');
+const { ObjectId } = require('mongodb');
 
 const { NODE_ENV, API_KEY } = process.env;
 const isDev = NODE_ENV !== 'production';
@@ -25,12 +26,16 @@ const validators = {
     body('document', 'document must be an object').isObject(),
     body('document', 'document can not be empty').custom(doc => {
       return !!Object.keys(doc).length;
-    })
+    }),
+    body('document').customSanitizer(({ _id, ...doc }) => doc) // no permito un custom _id
   ],
 
   validFilters: [
     body('filters', 'filters must exists').exists(),
-    body('filters', 'filters must be an object').isObject()
+    body('filters', 'filters must be an object').isObject(),
+    body('filters._id', '_id must be an MongoId').custom(_id => {
+      return !_id || ObjectId.isValid(_id);
+    })
   ],
   
   validOptions: [
@@ -47,6 +52,7 @@ const validators = {
   checkErrors: (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
+      // console.log(errors.array()[0]);
       return res.status(400).json({
         error: isDev ? errors.array()[0] : 'Request errors!'
       });
